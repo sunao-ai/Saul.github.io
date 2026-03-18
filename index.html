@@ -306,8 +306,15 @@
     }
 
     @media (max-width: 780px) {
+      html,
+      body {
+        height: auto;
+        overflow-y: auto;
+      }
+
       body {
         padding: 10px;
+        overflow-y: auto;
       }
 
       body::before,
@@ -323,6 +330,10 @@
         padding: 18px 14px 16px;
         border-radius: 28px;
         backdrop-filter: none;
+      }
+
+      .shell {
+        transform: none !important;
       }
 
       .grid {
@@ -579,6 +590,11 @@
     function fitShellToViewport() {
       const shell = document.querySelector(".shell");
       if (!shell) return;
+
+      if (window.innerWidth <= 780) {
+        shell.style.transform = "none";
+        return;
+      }
 
       shell.style.transform = "scale(1)";
 
